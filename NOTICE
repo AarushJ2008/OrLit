@@ -22,6 +22,12 @@ The following components of this project are covered under the Apache License 2.
 
 ---
 
+### Icon Asset
+
+The `.ico` file used in this project is an original asset created by the OrLit development team and is licensed under the Apache License, Version 2.0.
+
+---
+
 ### Third-Party Dependencies
 
 This project uses the following third-party Python packages, which are distributed under permissive open-source licenses compatible with the Apache License 2.0:
