@@ -8,7 +8,7 @@ FEATURES
 - Organizes papers (PDFs) and citation files into folders named by date
 - Generates an Excel index of all citations with access date, authors, title, journal, publication date, abstract and DOI
 - Watches folders for new files and processes them automatically in the background
-- Creates both in-text and bibliography citations in APA, MLA-9, ACS, ASA, Elsevier, IEEE and Nature styles
+- Creates both in-text and bibliography citations in APA, MLA-9, ACS, ASA, Chicago, Elsevier, IEEE and Nature styles
 - Provides access to the generated citations through just one click on the excel
 - Customizable source and target directories
 - Works offline
