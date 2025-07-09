@@ -34,6 +34,7 @@ import threading
 import time
 import sys  # For PyInstaller compatibility
 import psutil  # To close Excel
+import win32com.client
 from ctypes import windll  # To set the taskbar icon on Windows
 
 # --- Global Variables ---
@@ -63,10 +64,25 @@ def get_script_dir():
     return os.path.dirname(os.path.abspath(__file__))
 
 def close_excel():
-    """Closes all open instances of Excel."""
-    for proc in psutil.process_iter(['pid', 'name']):
-        if proc.info['name'].lower() == "excel.exe":
-            proc.kill()
+    """Saves and closes the 'Literature Organisation.xlsx' workbook if open, then quits Excel."""
+    try:
+        excel = win32com.client.Dispatch("Excel.Application")
+        workbook_found = False
+
+        for wb in excel.Workbooks:
+            if wb.Name == "Literature Organisation.xlsx":
+                wb.Save()
+                wb.Close(SaveChanges=0)
+                workbook_found = True
+                print("💾 'Literature Organisation.xlsx' saved and closed.")
+                break  # Stop after finding and closing the target workbook
+
+        if workbook_found:
+            excel.Quit()
+        else:
+            print("ℹ️ 'Literature Organisation.xlsx' not open.")
+    except Exception as e:
+        print(f"❌ Failed to close Excel: {e}")
 
 def browse_directory(entry_var, dropdown, history_file):
     """Opens file dialog for selecting a new directory, closes Excel, and updates dropdown."""
