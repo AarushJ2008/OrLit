@@ -69,8 +69,10 @@ def parse_citation_file(citation_path):
                 data['Title'] = re.split(r'[-=]', line, 1)[-1].strip()
             elif line.startswith(('%T')):
                 data['Title'] = re.split(r'[T]', line, 1)[-1].strip()
-            elif line.startswith(('title =')):  
-                data['Title'] = re.split(r'[{]', line, 1)[-1].strip()
+            elif 'title =' in line.lower():
+                match = re.search(r'title\s*=\s*[{"](.+?)[}"],?', line, re.IGNORECASE)
+                if match:
+                    data['Title'] = match.group(1).strip()
             # Extract Authors
             elif line.startswith(('AU  -', 'FAU -','A1  -')):  
                 authors.append(re.split(r'[-=]', line, 1)[-1].strip())
@@ -124,20 +126,32 @@ def parse_citation_file(citation_path):
                 if match:
                     data['Journal'] = match.group(1).strip()
             # Extract Volume
-            elif line.startswith(('VL  -','VI -','volume =')):  
+            elif line.startswith(('VL  -','VI -')):  
                 data['Volume'] = re.split(r'[-=]', line, 1)[-1].strip()
             elif line.startswith(('%V')):  
                 data['Volume'] = re.split(r'[V]', line, 1)[-1].strip()
+            elif 'volume =' in line.lower():
+                match = re.search(r'volume\s*=\s*[{"](.+?)[}"],?', line, re.IGNORECASE)
+                if match:
+                    data['Volume'] = match.group(1).strip()
             # Extract Issue
             elif line.startswith(('IP -','IS  -','number =')):  
                 data['Issue'] = re.split(r'[-=]', line, 1)[-1].strip()
             elif line.startswith(('%N')):  
                 data['Issue'] = re.split(r'[N]', line, 1)[-1].strip()
+            elif 'issue =' in line.lower():
+                match = re.search(r'issue\s*=\s*[{"](.+?)[}"],?', line, re.IGNORECASE)
+                if match:
+                    data['Issue'] = match.group(1).strip()
             # Extract Page Number
             elif line.startswith(('issn =','IS -','SN -')):  
                 data['Pages'] = re.split(r'[-=]', line, 1)[-1].strip()
             elif line.startswith('%@ '):  
                 data['Pages'] = re.split(r'[@]', line, 1)[-1].strip()
+            elif 'pages =' in line.lower():
+                match = re.search(r'pages\s*=\s*[{"](.+?)[}"],?', line, re.IGNORECASE)
+                if match:
+                    data['Pages'] = match.group(1).strip()
         
     if authors:
         data['First Author'] = authors[0]
