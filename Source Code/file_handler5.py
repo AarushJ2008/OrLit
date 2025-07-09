@@ -33,7 +33,7 @@ def get_directories():
 
 def list_citation_files(folder):
     """List all RIS, NBIB, BIB, and ENW citation files in a folder."""
-    return [os.path.join(folder, f) for f in os.listdir(folder) if f.endswith(('.ris', '.nbib', '.bib', '.enw'))]
+    return [os.path.join(folder, f) for f in os.listdir(folder) if f.endswith(('.ris', '.nbib', '.bib', '.enw', '.bibtex'))]
 
 def get_file_creation_date(file_path):
     """Get the file creation date cross-platform."""
@@ -63,7 +63,7 @@ def move_files_to_target(source, target):
         file_extension = os.path.splitext(item)[1].lower().strip()
 
         # Move only citation files
-        if file_extension not in (".ris", ".nbib", ".bib", ".enw"):
+        if file_extension not in (".ris", ".nbib", ".bib", ".enw",".bibtex"):
             print(f"🚫 Skipping: {item} (Not a citation file)")
             continue  
 
@@ -157,7 +157,7 @@ def organize_files_by_name(directory):
         base_name, ext = os.path.splitext(filename)
 
         # Categorize files by extension
-        if ext.lower() in ('.ris', '.nbib', '.bib', '.enw'):
+        if ext.lower() in ('.ris', '.nbib', '.bib', '.enw','.bibtex'):
             citation_files[base_name] = file_path
         elif ext.lower() == '.txt':
             txt_files[base_name] = file_path
@@ -196,3 +196,4 @@ if __name__ == "__main__":
     organize_files_by_name(target)
 
     print("✅ File organization complete!")
+    
