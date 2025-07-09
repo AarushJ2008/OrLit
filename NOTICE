@@ -38,6 +38,8 @@ This project uses the following third-party Python packages, which are distribut
   https://github.com/chronossc/openpyxl
 - **psutil** – BSD 3-Clause License  
   https://github.com/giampaolo/psutil
+- **pywin32** – MIT License  
+  https://github.com/mhammond/pywin32
 
 No modifications have been made to these libraries. Their use complies with their respective licenses.
 
