@@ -27,6 +27,7 @@ INSTALLATION & USAGE
 8. Click on the Access Date hyperlink to open its respective folder
 9. Click on the Title hyperlink to open the in-text and bibliography citations 
 10. To resume literature organisation close the excel file and click 'Accept Changes'
+11. Users can also make manual entries onto the excel (Entries processed by the app will not overwrite it)
 
 
 ────────────────────────────
