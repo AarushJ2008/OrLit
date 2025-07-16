@@ -36,6 +36,7 @@ import sys  # For PyInstaller compatibility
 import psutil  # To close Excel
 import win32com.client
 from ctypes import windll  # To set the taskbar icon on Windows
+from tkinter import messagebox
 
 # --- Global Variables ---
 stop_event = threading.Event()  # Event to stop the background process
@@ -205,7 +206,10 @@ def run_main_in_background(source_var, target_var, citation_style_var):
 
 
         if source_directory == "📂 Choose a New Directory" or target_directory == "📂 Choose a New Directory":
-            print("Warning", "⚠️ Please select valid source and target directories!")
+            messagebox.showerror(
+                title="Directory Not Selected",
+                message="Please select both valid source and target directory before continuing."
+        )            
             return
 
         print("🚀 Running main process...")
